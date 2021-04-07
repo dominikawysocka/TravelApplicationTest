@@ -9,15 +9,16 @@ import java.util.concurrent.TimeUnit;
 public class SearchHotelTest extends BaseSeleniumTest {
 
 
-@Test
-public void searchHotel(){
+    @Test
+    public void searchHotel() {
 
-    driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
-    driver.get("http://www.kurs-selenium.pl/demo/");
-    HomePage homePage = new HomePage(driver);
-    homePage.addLocation("Dubai");
-
-}
+        driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
+        driver.get("http://www.kurs-selenium.pl/demo/");
+        HomePage homePage = new HomePage(driver);
+        homePage.addLocation("Dubai");
+        homePage.addDate("01/12/2021", "05/12/5021");
+        homePage.addPerson(1, 3);
+    }
 
 
 }
