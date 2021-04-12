@@ -1,5 +1,4 @@
 package com.travelers.pages;
-
 import com.travelers.BaseSeleniumTest;
 import com.travelers.helper.SeleniumHelper;
 import org.openqa.selenium.By;
@@ -8,8 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomePage extends BaseSeleniumTest {
@@ -47,33 +44,40 @@ public class HomePage extends BaseSeleniumTest {
     @FindBy(xpath = "//body/div[@id='body-section']/section[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[5]/button[1]")
     private WebElement search;
 
-    @FindBy(xpath = "//table[@class='bgwhite table table-striped']")
-    private WebElement hotelList;
+
 
     private SeleniumHelper helper;
+
+    private WebDriver driver;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.helper = new SeleniumHelper(driver);
+        this.driver = driver;
     }
 
 
-    public void addLocation(String location) {
-
+    public HomePage addLocation(String location) {
+        helper.waitForElementToBeDisplayed(By.xpath("//span[text()='Search by Hotel or City Name']"));
         this.searchSpan.click();
         this.searchCityInput.get(0).sendKeys(location);
         this.searchCityInput.get(0).sendKeys(Keys.ENTER);
+        helper.waitForElementToBeDisplayed(By.xpath("//body/div[@id='select2-drop']/ul[1]/li[1]/ul[1]/li[1]/div[1]"));
+        helper.waitForElementToBeDisplayed(confirmPlace);
         confirmPlace.click();
+        return this;
     }
 
-    public void addDate(String beginDate, String endDate) {
+    public HomePage addDate(String beginDate, String endDate) {
         this.checkIn.sendKeys(beginDate);
         this.checkOut.sendKeys(endDate);
+        return this;
     }
 
-    public void addPerson(Integer adult, Integer junior) {
+    public HomePage addPerson(Integer adult, Integer junior) {
 
         this.person.click();
+        helper.waitForElementToBeDisplayed(plusJunior);
         if (adult < 2) {
             for (int i = 0; i < 2 - adult; i++) {
                 minusAdult.click();
@@ -95,29 +99,9 @@ public class HomePage extends BaseSeleniumTest {
 //        this.plusJunior.click();
 //        this.minusJunior.click();
         search.click();
-
+        return this;
     }
 
-    public List<String> getHotels() {
-        helper.waitForElementToBeDisplayed(By.xpath("//h4//b"));
-        List<WebElement> hotelName = hotelList.findElements(By.xpath("//h4//b"));
-        List<String> hotelNames = new ArrayList<>();
-        for (WebElement element : hotelName) {
-            hotelNames.add(element.getText());
-        }
-        return hotelNames;
 
-    }
-
-    public List<String> getPrices() {
-
-        List<WebElement> price = hotelList.findElements(By.xpath("//div[@class='fs26 text-center']"));
-        List<String> prices = new ArrayList<>();
-        for (WebElement element : price) {
-            prices.add(element.getText());
-        }
-
-        return prices;
-    }
 
 }

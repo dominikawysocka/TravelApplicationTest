@@ -25,7 +25,7 @@ public class BaseSeleniumTest {
         @AfterClass
         public void tearDown() {
 
-            //driver.quit();
+            driver.quit();
         }
 
 
