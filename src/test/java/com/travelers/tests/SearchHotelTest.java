@@ -1,11 +1,13 @@
 package com.travelers.tests;
 
 import com.travelers.BaseSeleniumTest;
+import com.travelers.helper.SeleniumHelper;
 import com.travelers.pages.HomePage;
 import com.travelers.pages.ResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class SearchHotelTest extends BaseSeleniumTest {
 
 
     @Test
-    public void searchHotel() {
+    public void searchHotel() throws IOException {
 
         // driver.manage().timeouts().implicitlyWait(15L, TimeUnit.SECONDS);
         driver.get("http://www.kurs-selenium.pl/demo/");
@@ -26,7 +28,9 @@ public class SearchHotelTest extends BaseSeleniumTest {
 
         ResultPage result = new ResultPage(driver);
         List<String> hotelName = result.getHotels();
+        SeleniumHelper.takeScreenshot(driver);
         List<String> prices = result.getPrices();
+
 
         List<String> orginalNames = new ArrayList<>();
         orginalNames.add("Jumeirah Beach Hotel");
