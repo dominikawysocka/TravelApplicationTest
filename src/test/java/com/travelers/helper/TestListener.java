@@ -10,7 +10,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult){
         try {
-            SeleniumHelper.takeScreenshot(DriveFactory.getDriver(DriverType.CHROME));
+            SeleniumHelper.takeScreenshot(DriveFactory.getDriver(DriverType.FIREFOX));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NoSuchDriverException e) {

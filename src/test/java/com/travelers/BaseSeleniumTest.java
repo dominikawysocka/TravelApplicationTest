@@ -15,7 +15,7 @@ public abstract class BaseSeleniumTest {
 
     @BeforeClass
     public void setup() throws NoSuchDriverException {
-        driver = DriveFactory.getDriver(DriverType.CHROME);
+        driver = DriveFactory.getDriver(DriverType.FIREFOX);
     }
 
     @AfterClass
