@@ -14,7 +14,7 @@ public class DriveFactory {
 
     private static WebDriver driverInstance;
 
-    public static WebDriver getDriver(DriverType driverType) {
+    public static WebDriver getDriver(DriverType driverType) throws NoSuchDriverException {
         if (driverInstance == null) {
 
             driverInstance = specificDriver(driverType);
@@ -23,7 +23,7 @@ public class DriveFactory {
         return driverInstance;
     }
 
-    private static WebDriver specificDriver(DriverType driverType) {
+    private static WebDriver specificDriver(DriverType driverType) throws NoSuchDriverException {
 
         switch (driverType) {
 
@@ -51,6 +51,7 @@ public class DriveFactory {
 
             default:
                 System.out.println("Nieznany typ drivera");
+                throw new NoSuchDriverException();
 
         }
         return driverInstance;

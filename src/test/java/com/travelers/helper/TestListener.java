@@ -13,6 +13,8 @@ public class TestListener implements ITestListener {
             SeleniumHelper.takeScreenshot(DriveFactory.getDriver(DriverType.CHROME));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NoSuchDriverException e) {
+            e.printStackTrace();
         }
     }
 
