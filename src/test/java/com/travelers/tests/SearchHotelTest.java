@@ -1,16 +1,18 @@
 package com.travelers.tests;
 
+import annotation.TestListener;
 import com.travelers.BaseSeleniumTest;
-import com.travelers.helper.SeleniumHelper;
 import com.travelers.pages.HomePage;
 import com.travelers.pages.ResultPage;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Listeners(TestListener.class)
 public class SearchHotelTest extends BaseSeleniumTest {
 
 
@@ -28,7 +30,7 @@ public class SearchHotelTest extends BaseSeleniumTest {
 
         ResultPage result = new ResultPage(driver);
         List<String> hotelName = result.getHotels();
-        SeleniumHelper.takeScreenshot(driver);
+        //SeleniumHelper.takeScreenshot(driver);
         List<String> prices = result.getPrices();
 
 
