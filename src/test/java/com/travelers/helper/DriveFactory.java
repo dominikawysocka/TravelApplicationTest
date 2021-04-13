@@ -2,6 +2,9 @@ package com.travelers.helper;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+
+import java.io.File;
 
 public class DriveFactory {
 
@@ -9,10 +12,12 @@ public class DriveFactory {
 
     public static WebDriver getDriver() {
         if (driverInstance == null) {
-            String driverPath = "E://ProjektyzProgramowania//tutorialselenium//src//main//executables//drivers//chromedriver.exe";
-            System.setProperty("webdriver.chrome.driver", driverPath);
+            File driverExe = new File("src///main//executables//drivers//chromedriver.exe");
+            ChromeDriverService driverService = new ChromeDriverService.Builder()
+                    .usingDriverExecutable(driverExe)
+                    .usingAnyFreePort().build();
 
-            driverInstance = new ChromeDriver();
+            driverInstance = new ChromeDriver(driverService);
             driverInstance.manage().window().maximize();
 
         }
