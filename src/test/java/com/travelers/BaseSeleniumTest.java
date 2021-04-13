@@ -1,6 +1,7 @@
 package com.travelers;
 
 import com.travelers.helper.DriveFactory;
+import com.travelers.helper.DriverType;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -13,13 +14,7 @@ public abstract class BaseSeleniumTest {
 
     @BeforeClass
     public void setup() {
-
-        // String driverPath = "E://ProjektyzProgramowania//tutorialselenium//src//main//executables//drivers//chromedriver.exe";
-        //System.setProperty("webdriver.chrome.driver", driverPath);
-
-        //driver = new ChromeDriver();
-        //driver.manage().window().maximize();
-        driver = DriveFactory.getDriver();
+        driver = DriveFactory.getDriver(DriverType.CHROME);
     }
 
     @AfterClass
