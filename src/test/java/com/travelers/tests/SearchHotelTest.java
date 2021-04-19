@@ -32,8 +32,7 @@ public class SearchHotelTest extends BaseSeleniumTest {
         homePage.addLocation(city)
                 .addDate(checkInDate, checkOutDate)
                 .addPerson(1, 3);
-        // homePage.addDate("01/12/2021", "05/12/5021");
-        //homePage.addPerson(1, 3);
+
 
         test.info(" wpisanie wytycznych + wyszukanie", getScreenshot());
 
