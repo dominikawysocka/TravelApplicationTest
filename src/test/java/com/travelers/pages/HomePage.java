@@ -1,4 +1,5 @@
 package com.travelers.pages;
+
 import com.travelers.BaseSeleniumTest;
 import com.travelers.helper.SeleniumHelper;
 import org.openqa.selenium.By;
@@ -7,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import java.util.List;
 
 public class HomePage extends BaseSeleniumTest {
@@ -44,7 +46,7 @@ public class HomePage extends BaseSeleniumTest {
     @FindBy(xpath = "//body/div[@id='body-section']/section[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[5]/button[1]")
     private WebElement search;
 
-
+   // private Logger log = Logger.getLogger(HomePage.class);
 
     private SeleniumHelper helper;
 
@@ -58,6 +60,7 @@ public class HomePage extends BaseSeleniumTest {
 
 
     public HomePage addLocation(String location) {
+     //   log.info("wpisanie miasta");
         helper.waitForElementToBeDisplayed(By.xpath("//span[text()='Search by Hotel or City Name']"));
         this.searchSpan.click();
         this.searchCityInput.get(0).sendKeys(location);
@@ -65,10 +68,12 @@ public class HomePage extends BaseSeleniumTest {
         helper.waitForElementToBeDisplayed(By.xpath("//body/div[@id='select2-drop']/ul[1]/li[1]/ul[1]/li[1]/div[1]"));
         helper.waitForElementToBeDisplayed(confirmPlace);
         confirmPlace.click();
+       // log.info("Wpisano miasto");
         return this;
     }
 
     public HomePage addDate(String beginDate, String endDate) {
+      //  log.info("dodanie daty");
         this.checkIn.sendKeys(beginDate);
         this.checkOut.sendKeys(endDate);
         return this;
@@ -101,7 +106,6 @@ public class HomePage extends BaseSeleniumTest {
         search.click();
         return this;
     }
-
 
 
 }

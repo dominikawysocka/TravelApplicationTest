@@ -75,5 +75,4 @@ public class SearchHotelTest extends BaseSeleniumTest {
     }
 
 
-
 }
